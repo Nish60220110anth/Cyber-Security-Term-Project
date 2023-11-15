@@ -1,1 +1,3 @@
-GET http://localhost:3000/api/file
+# GET http://localhost:3000/api/file?filename=./../package.json
+# GET http://localhost:3000/api/specerror?username=admn&password=admin
+GET http://localhost:3000/api/someerror<script>alert('hello');</script>

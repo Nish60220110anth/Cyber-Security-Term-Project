@@ -9,7 +9,7 @@ import React from "react";
 
 import SearchIcon from "@mui/icons-material/Search";
 import Link from "next/link";
-import { Add, ArrowLeft, ArrowRight, ThreeDRotationSharp } from "@mui/icons-material";
+import { Add, ArrowLeft, ArrowRight, AutoAwesomeMosaic, ThreeDRotationSharp } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 
 const Search = styled('div')(({ theme }) => ({
@@ -70,14 +70,11 @@ class DrawerProps {
 }
 
 const drawerProps: DrawerProps[] = [
-    new DrawerProps("/content/SQLInjection", "SQL Injection", "SQL Injection", <ArrowRight />),
     new DrawerProps("/content/Default", "Default User Accounts", "Default User Accounts", <ArrowRight />),
     new DrawerProps("/content/SpecificError", "Specific Error Message", "Specific Error Message", <ArrowRight />),
-    new DrawerProps("/content/InputValidation", "Input Validation", "Input Validation", <ArrowRight />),
     new DrawerProps("/content/UnpublishedURL", "Unpublished URLS", "Unpublished URLS", <ArrowRight />),
     new DrawerProps("/content/ListDirectory", "List Directory", "List Directory", <ArrowRight />),
-    new DrawerProps("/content/PasswordPolicy", "Password Policy", "Password Policy", <ArrowRight />),
-    new DrawerProps("/content/XSS", "Cross Side Scripting", "Cross Side Scripting", <ArrowRight />)
+    new DrawerProps("/content/ErrorXSS", "Error XSS", "Error based XSS attack", <ArrowRight />),
 ];
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -144,7 +141,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
                     <Toolbar>
                         <IconButton size="large" edge="start" color="inherit" sx={{ mr: 2 }}>
-                            <img src="/icon.ico" alt="icon" width="32" height="32" />
+                            <Link href="/">
+                                <img src="/icon.ico" alt="icon" width="32" height="32" />
+                            </Link>
                         </IconButton>
 
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}
@@ -170,7 +169,10 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                             href="/examples">Examples</Link>
                         <Link color="inherit" className="text-white bg-black p-2
                         hover:text-black hover:bg-white transition-colors delay-150 ease-in m-1 rounded-md"
-                            href="/about">About</Link>
+                            href="/resources">Resources</Link>
+                        <Link color="inherit" className="text-white bg-black p-2
+                        hover:text-black hover:bg-white transition-colors delay-150 ease-in m-1 rounded-md"
+                            href="/cookie">Cookie</Link>
 
                         <IconButton
                             size="large"
@@ -179,7 +181,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                             aria-label="menu"
                             onClick={toggleDrawer(true)}
                         >
-                            <ThreeDRotationSharp />
+                            <AutoAwesomeMosaic />
                         </IconButton>
 
                         <Drawer
@@ -197,12 +199,20 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 {children}
             </Grid>
 
-            <SpeedDial icon={<Add />} ariaLabel="Actions"
-                sx={{ position: 'absolute', bottom: 16, right: 16, color: "inherit" }}>
+            <SpeedDial icon={<Add
+                sx={{
+                    color: "black", ":hover": {
+                        color: "white"
+                    }
+                }}
+            />} ariaLabel="Actions"
+                sx={{
+                    position: 'fixed', bottom: 16, right: 16, color: "inherit",
+                }}>
 
                 <SpeedDialAction key="back" icon={<ArrowLeft sx={{
-                    color: "white", ":hover": {
-                        color: "black"
+                    color: "black", ":hover": {
+                        color: "white"
                     }
                 }} />}
 
@@ -216,9 +226,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 />
 
                 <SpeedDialAction key="front" icon={<ArrowRight sx={{
-                    color: "white", ":hover": {
-                        color: "black"
-                    }
+                    color: "black", ":hover": {
+                        color: "white"
+                    },
                 }} />}
 
                     sx={{ backgroundColor: "black" }}
